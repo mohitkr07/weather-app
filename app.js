@@ -32,17 +32,44 @@ app.post("/",function(req,res){
     today = mm + '/' + dd + '/' + yyyy;
 
     axios.get(url_api).then(response=>{
-        const temperature=Math.round(response.data.main.temp);
-        const main=_.upperFirst(response.data.weather[0].main);
-        const description=response.data.weather[0].description;
-        const icon=response.data.weather[0].icon;
-        const url_icon="http://openweathermap.org/img/wn/"+icon+"@2x.png";
-        res.render("home", {
-            city: city, temp: temperature, status: main, today: today, url_icon:url_icon
-        });
+        
+        
+            try{
+                if (response.data.cod=='404')
+                {
+                    city = response.data.message;
+
+                    res.render("home", {
+                        city:city, 
+                        temp:null, 
+                        status:null, 
+                        today: null, 
+                        url_icon: null
+                    });
+                }
+                else
+                { 
+                    const temperature=Math.round(response.data.main.temp);
+                    const main=_.upperFirst(response.data.weather[0].main);
+                    const description=response.data.weather[0].description;
+                    const icon=response.data.weather[0].icon;
+                    const url_icon="http://openweathermap.org/img/wn/"+icon+"@2x.png";
+                    res.render("home", {
+                        city: city, 
+                        temp: temperature, 
+                        status: main, 
+                        today: today, 
+                        url_icon:url_icon
+                    });
+                } 
+            }
+            catch(err){
+                console.log(err);
+                res.status(404).send({message:'something went wrong'});
+            }
     });
     
-});
+}); 
 
 let port = process.env.PORT;
 if (port == null || port == "") {
