@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+    <title>Weather</title>
+</head>
+    
+<body>
+    <section class="front">
+        <div class="nav">
+            <div class="city_n">
+                <h1><%=city%></h1>
+            </div>
+            <div class="search">
+                <form action="/" method="post" autocomplete="nope">
+                    <input type="text" name="searchCity" placeholder="Search City" >
+                    <button type="submit" >Search</button>
+                </form>
+                
+            </div>
+
+        </div>
+
+        <div class="box">
+            <div class="current-status-box">
+                    <div class="temp">
+                        <div class="mag">
+                            <h1><%=temp%></h1>
+                        </div>
+                        <div class="temp-sub">
+                            <div class="unit">
+                                <p>°C</p>
+                            </div>
+                            <div class="status">
+                                <p><%=status%></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="date">
+                        <p><%=today%></p>
+                    </div>
+            </div>
+
+            <div class="other-status">
+            </div>
+
+            <div class="icon-box">
+                <img src="<%=url_icon%>" alt="">
+            </div>
+        </div>
+
+        
+    </section>
+
+</body>
+</html>
