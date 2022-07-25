@@ -175,3 +175,40 @@ body{
         font-size: 60%;
     }
 }
+@media(max-width: 480px){
+    html{
+        font-size: 50%;
+    }
+    .nav{
+        height: 15rem;
+    }
+    .nav{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content:space-between;
+        align-items: center;
+    }
+    .city_n{
+        margin-right: 5rem;
+    }
+    .search{
+        margin-left: 3rem;
+        margin-top: 1rem;
+    }
+    .current-status-box{
+        position: absolute;
+        left: 4rem;
+        top: 2rem;
+        display: flex;
+        flex-direction: column;
+    
+    }
+    .icon-box{
+        position: absolute;
+        top: 2rem;
+        right: 1rem;
+    }
+    body{
+        margin: 10rem;
+    }
+}
