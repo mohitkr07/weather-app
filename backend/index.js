@@ -68,18 +68,9 @@ app.get("/", async (req, res) => {
       res.status(404).send({ message: "something went wrong" });
     }
   });
-
-  // res.send({
-  //   city: "delhi",
-  //   temp: "null",
-  //   status: "null",
-  //   today: "null",
-  //   url_icon: "null",
-  // });
 });
 
-app.post("/", (req, res) => {
-  // const API_KEY = "655688ef8fcb818d223817edb8b01a39";
+app.post("/", async (req, res) => {
   const city = _.upperFirst(req.body.city);
   if (!city) {
     throw new Error("Enter valid city");
@@ -96,10 +87,10 @@ app.post("/", (req, res) => {
 
         res.send({
           city: city,
-          temp: null,
-          status: null,
-          today: null,
-          url_icon: null,
+          temp: "null",
+          status: "null",
+          today: "null",
+          url_icon: "null",
         });
       } else {
         const temperature = Math.round(response.data.main.temp);
