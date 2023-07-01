@@ -66,6 +66,7 @@ const Home = () => {
           <div className={styles["container-top"]}>
             <div className={styles["cityName"]}>
               <h1>{wData.city}</h1>
+              <p>{wData.today}</p>
             </div>
             <div className={styles["search-box"]}>
               <input

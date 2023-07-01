@@ -79,12 +79,13 @@ background-size: cover;
 }
 .weather-icon{
     height: 100%;
+    width: 5%;
     width: auto;
     background: radial-gradient(rgba(251, 251, 251, 0.16), rgba(255, 255, 255, 0.01),rgba(255, 255, 255, 0.001));
 
 }
 .weather-icon img{
-    height: 100%;
+    width: 100%;
 }
 
 .temperature{
@@ -274,15 +275,23 @@ background-size: cover;
     .container-top .cityName{
         /* margin-top: 1rem; */
     }
-    .container-top .cityName h1{
-        font-size: 2.2rem;
+    .cityName h1{
+        font-size: 1.1rem;
+        margin: 0;
+    }
+    .cityName{
+        margin-top: 1rem;
+    }
+    .cityName p{
+        font-size: 70%;
+        margin: 0;
     }
     .container-top .search-box{
         /* margin-top: 1rem; */
         font-size: 80%;
     }
     .search-box input{
-        width: 8rem;
+        width: 5rem;
     };
 
     /*  */
@@ -314,8 +323,7 @@ background-size: cover;
         /* position: relative;
         left: 2rem; */
     }
-    .temp p{
-    } 
+    
     .des-feels{
         /* font-size: 60%; */
         height: 2rem;
