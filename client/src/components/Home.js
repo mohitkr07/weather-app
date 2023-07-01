@@ -24,12 +24,15 @@ const Home = () => {
 
   useEffect(() => {
     const dataReq = async () => {
-      const fetchData = await fetch("https://weatherbackend-3on2.onrender.com/", {
-        method: "get",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const fetchData = await fetch(
+        "https://weatherbackend-3on2.onrender.com/",
+        {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const data = await fetchData.json();
       setData(data);
     };
@@ -37,7 +40,6 @@ const Home = () => {
   }, []);
 
   const postData = async (e) => {
-    e.preventDefault();
     const res = await fetch("https://weatherbackend-3on2.onrender.com/", {
       method: "post",
       headers: {
@@ -48,6 +50,13 @@ const Home = () => {
 
     const data = await res.json();
     setData(data);
+  };
+
+  const handleKeypress = (e) => {
+    //it triggers by pressing the enter key
+    if (e.keyCode === 13) {
+      postData();
+    }
   };
 
   return (
@@ -64,8 +73,10 @@ const Home = () => {
                 placeholder="City Name"
                 onChange={(e) => {
                   setCity(e.target.value);
+
                   // console.log(city);
                 }}
+                onKeyDown={handleKeypress}
               ></input>
               <button onClick={postData}>Search</button>
             </div>
