@@ -24,7 +24,7 @@ const Home = () => {
 
   useEffect(() => {
     const dataReq = async () => {
-      const fetchData = await fetch("http://localhost:5000/", {
+      const fetchData = await fetch("https://weatherbackend-3on2.onrender.com/", {
         method: "get",
         headers: {
           "Content-Type": "application/json",
@@ -38,7 +38,7 @@ const Home = () => {
 
   const postData = async (e) => {
     e.preventDefault();
-    const res = await fetch("http://localhost:5000/", {
+    const res = await fetch("https://weatherbackend-3on2.onrender.com/", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
