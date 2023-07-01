@@ -3,7 +3,6 @@ import styles from "./components.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPaperPlane,
-  faWind,
   faWater,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
