@@ -75,12 +75,13 @@ background-size: cover;
     width: fit-content;
     display: flex;
     justify-content: space-around;
-    /* background: radial-gradient(rgba(21, 20, 20,0.45), rgba(23, 23, 23, 0.1),rgba(0, 0, 0, 0.1)); */
-
+    
 }
 .weather-icon{
     height: 100%;
     width: auto;
+    background: radial-gradient(rgba(251, 251, 251, 0.16), rgba(255, 255, 255, 0.01),rgba(255, 255, 255, 0.001));
+
 }
 .weather-icon img{
     height: 100%;
