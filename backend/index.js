@@ -48,6 +48,11 @@ app.get("/", async (req, res) => {
           status: null,
           today: null,
           url_icon: null,
+          speed: null,
+          humidity: null,
+          visibility: null,
+          pressure: null,
+          feels_like: null,
         });
       } else {
         const temperature = Math.round(response.data.main.temp);
@@ -55,12 +60,23 @@ app.get("/", async (req, res) => {
         const description = response.data.weather[0].description;
         const icon = response.data.weather[0].icon;
         const url_icon = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+        const speed = response.data.wind.speed;
+        const humidity = response.data.main.humidity;
+        const visibility = response.data.visibility;
+        const pressure = response.data.main.pressure;
+        const feels_like = response.data.main.feels_like;
+        console.log(speed, humidity);
         res.send({
           city: city,
           temp: temperature,
-          status: main,
+          status: description,
           today: today,
           url_icon: url_icon,
+          speed: speed,
+          humidity: humidity,
+          visibility: visibility,
+          pressure: pressure,
+          feels_like: feels_like,
         });
       }
     } catch (err) {
@@ -79,7 +95,6 @@ app.post("/", async (req, res) => {
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     city +
     "&appid=655688ef8fcb818d223817edb8b01a39&units=metric";
-
   axios.get(url_api).then((response) => {
     try {
       if (response.data.cod == "404") {
@@ -91,6 +106,11 @@ app.post("/", async (req, res) => {
           status: "null",
           today: "null",
           url_icon: "null",
+          speed: "null",
+          humidity: "null",
+          visibility: "null",
+          pressure: "null",
+          feels_like: "null",
         });
       } else {
         const temperature = Math.round(response.data.main.temp);
@@ -98,12 +118,22 @@ app.post("/", async (req, res) => {
         const description = response.data.weather[0].description;
         const icon = response.data.weather[0].icon;
         const url_icon = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+        const speed = response.data.wind.speed;
+        const humidity = response.data.main.humidity;
+        const visibility = response.data.visibility;
+        const pressure = response.data.main.pressure;
+        const feels_like = response.data.main.feels_like;
         res.send({
           city: city,
           temp: temperature,
           status: main,
           today: today,
           url_icon: url_icon,
+          speed: speed,
+          humidity: humidity,
+          visibility: visibility,
+          pressure: pressure,
+          feels_like: feels_like,
         });
       }
     } catch (err) {
