@@ -27,6 +27,7 @@ const date = new Date();
 const day = date.getDate();
 const month = date.getMonth();
 const year = date.getFullYear();
+const secret_key = process.env.REACT_APP_SECRET_KEY;
 
 var today = day + " " + months[month] + " " + year;
 
@@ -35,7 +36,9 @@ app.get("/", async (req, res) => {
   const url_api =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     city +
-    "&appid=655688ef8fcb818d223817edb8b01a39&units=metric";
+    "&appid=" +
+    secret_key +
+    "&units=metric";
 
   axios.get(url_api).then((response) => {
     try {
@@ -94,7 +97,9 @@ app.post("/", async (req, res) => {
   const url_api =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     city +
-    "&appid=655688ef8fcb818d223817edb8b01a39&units=metric";
+    "&appid=" +
+    secret_key +
+    "&units=metric";
   axios.get(url_api).then((response) => {
     try {
       if (response.data.cod == "404") {
