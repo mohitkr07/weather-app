@@ -4,6 +4,7 @@ const axios = require("axios");
 const _ = require("lodash");
 const app = express();
 const port = process.env.PORT || 5000;
+require("dotenv").config();
 
 app.use(express.json());
 app.use(cors());
@@ -27,7 +28,6 @@ const date = new Date();
 const day = date.getDate();
 const month = date.getMonth();
 const year = date.getFullYear();
-const secret_key = process.env.REACT_APP_SECRET_KEY;
 
 var today = day + " " + months[month] + " " + year;
 
@@ -37,7 +37,7 @@ app.get("/", async (req, res) => {
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     city +
     "&appid=" +
-    secret_key +
+    process.env.REACT_APP_SECRET_KEY +
     "&units=metric";
 
   axios.get(url_api).then((response) => {
@@ -98,7 +98,7 @@ app.post("/", async (req, res) => {
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     city +
     "&appid=" +
-    secret_key +
+    process.env.REACT_APP_SECRET_KEY +
     "&units=metric";
   axios.get(url_api).then((response) => {
     try {
