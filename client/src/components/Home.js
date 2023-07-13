@@ -24,15 +24,12 @@ const Home = () => {
 
   useEffect(() => {
     const dataReq = async () => {
-      const fetchData = await fetch(
-        "https://weatherbackend-3on2.onrender.com/",
-        {
-          method: "get",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const fetchData = await fetch("/api", {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const data = await fetchData.json();
       setData(data);
     };
@@ -41,7 +38,7 @@ const Home = () => {
 
   const postData = async (e) => {
     // https://weatherbackend-3on2.onrender.com/
-    const res = await fetch("https://weatherbackend-3on2.onrender.com/", {
+    const res = await fetch("/", {
       method: "post",
       headers: {
         "Content-Type": "application/json",

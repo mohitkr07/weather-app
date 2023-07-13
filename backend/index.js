@@ -42,7 +42,7 @@ const year = date.getFullYear();
 
 var today = day + " " + months[month] + " " + year;
 
-app.get("/", async (req, res) => {
+app.get("/api", async (req, res) => {
   const city = "Delhi";
   const url_api =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
