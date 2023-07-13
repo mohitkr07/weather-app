@@ -52,6 +52,7 @@ background-size: cover;
 }
 .cityName{
     margin-left: 2%;
+    padding-top: 15px;
 }
 .container-bottom{
     height: calc(100% - 6rem);
@@ -270,7 +271,8 @@ background-size: cover;
     }
     .container-top{
         display: flex;
-        align-self: center;
+        align-items: center;
+        
     }
     .container-top .cityName{
         /* margin-top: 1rem; */
@@ -281,6 +283,7 @@ background-size: cover;
     }
     .cityName{
         margin-top: 1rem;
+        padding-top: 0;
     }
     .cityName p{
         font-size: 70%;
