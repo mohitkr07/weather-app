@@ -7,6 +7,37 @@ import {
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
 
+const API_KEY = process.env.REACT_APP_WEATHER_API_KEY; // Note: In React, env vars must start with REACT_APP_
+
+const fetchWeatherData = async (city) => {
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
+    city
+  )}&appid=${API_KEY}&units=metric`;
+
+  const response = await fetch(url);
+  if (!response.ok) throw new Error("City not found");
+  const data = await response.json();
+
+  // Map OpenWeatherMap data to your state shape
+  return {
+    city: data.name,
+    temp: Math.round(data.main.temp),
+    today: new Date().toLocaleDateString("en-IN", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }),
+    status: data.weather[0].description,
+    url_icon: `https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`,
+    speed: data.wind.speed,
+    humidity: data.main.humidity,
+    visibility: data.visibility,
+    pressure: data.main.pressure,
+    feels_like: data.main.feels_like,
+  };
+};
+
 const Home = () => {
   const [wData, setData] = useState({
     city: "Delhi",
@@ -21,37 +52,26 @@ const Home = () => {
     feels_like: "",
   });
   const [city, setCity] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    const dataReq = async () => {
-      const fetchData = await fetch("/api", {
-        method: "get",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await fetchData.json();
-      setData(data);
-    };
-    dataReq();
+    fetchWeatherData("Delhi")
+      .then(setData)
+      .catch((err) => setError(err.message));
   }, []);
 
-  const postData = async (e) => {
-    // https://weatherbackend-3on2.onrender.com/
-    const res = await fetch("/", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ city }),
-    });
-
-    const data = await res.json();
-    setData(data);
+  const postData = async () => {
+    if (!city) return;
+    setError("");
+    try {
+      const data = await fetchWeatherData(city);
+      setData(data);
+    } catch (err) {
+      setError("City not found. Please try again.");
+    }
   };
 
   const handleKeypress = (e) => {
-    //it triggers by pressing the enter key
     if (e.keyCode === 13) {
       postData();
     }
@@ -70,26 +90,23 @@ const Home = () => {
               <input
                 type="text"
                 placeholder="City Name"
-                onChange={(e) => {
-                  setCity(e.target.value);
-
-                  // console.log(city);
-                }}
+                onChange={(e) => setCity(e.target.value)}
                 onKeyDown={handleKeypress}
-              ></input>
+              />
               <button onClick={postData}>Search</button>
             </div>
           </div>
+          {error && (
+            <div style={{ color: "red", margin: "10px 0" }}>{error}</div>
+          )}
           <div className={styles["container-bottom"]}>
             <div className={styles["bottom-sub-1"]}>
               <div className={styles["sub-1-content"]}>
                 <div className={styles["weather-icon"]}>
-                  {/* URL icon */}
-                  <img src={wData.url_icon}></img>
+                  <img src={wData.url_icon} alt={wData.status} />
                 </div>
                 <div className={styles["temperature"]}>
                   <div className={styles["temp"]}>
-                    {/* Temperature */}
                     <p>{wData.temp}</p>
                   </div>
                   <div className={styles["degree"]}>
@@ -97,10 +114,7 @@ const Home = () => {
                   </div>
                 </div>
                 <div className={styles["des-feels"]}>
-                  {/* status */}
-
                   <p className={styles["des"]}>{wData.status}</p>
-                  {/* feels like */}
                   <p className={styles["feels"]}>
                     Feels Like {Math.round(wData.feels_like)} °C
                   </p>
@@ -121,12 +135,13 @@ const Home = () => {
                 </div>
                 <div className={styles["visibility"]}>
                   <h3>Visibility</h3>
-                  <p>{Math.round(wData.visibility / 1000)} km</p>
+                  <p>{wData.visibility ? Math.round(wData.visibility / 1000) : 0} km</p>
                   <FontAwesomeIcon icon={faEyeSlash} />
                 </div>
                 <div className={styles["pressure"]}>
-                  <h3>Pressure</h3> <p>{wData.pressure} mb</p>
-                  <img src="images/pressure.png"></img>
+                  <h3>Pressure</h3>
+                  <p>{wData.pressure} mb</p>
+                  <img src="images/pressure.png" alt="Pressure" />
                 </div>
               </div>
             </div>
@@ -138,14 +153,15 @@ const Home = () => {
         <div className={styles["footer-basic"]}>
           <footer>
             <div className={styles["social"]}>
-              <a target="_blank" href="https://github.com/mohitkr07">
+              <a target="_blank" rel="noopener noreferrer" href="https://github.com/mohitkr07">
                 <i className="icon ion-social-github"></i>
               </a>
-              <a target="_blank" href="https://www.instagram.com/mohit_kr07/">
+              <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/mohit_kr07/">
                 <i className="icon ion-social-instagram"></i>
               </a>
               <a
                 target="_blank"
+                rel="noopener noreferrer"
                 href="https://www.linkedin.com/in/mohitkumar-mahto-7016311b7/"
               >
                 <i className="icon ion-social-linkedin"></i>

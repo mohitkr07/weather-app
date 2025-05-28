@@ -19,7 +19,7 @@ font-family: 'Ubuntu', sans-serif; */
 
 /* section 1 */
 .section1{
-    height: 80%;
+    height: 100%;
     width: 100%;
     /* background-color: red; */
     display: flex;
@@ -29,14 +29,17 @@ font-family: 'Ubuntu', sans-serif; */
 }
 
 .container{
-width: 60%;
-height: 80%;
-border: 1px solid;
+width: 100%;
+height: 100%;
+/* border: 1px solid; */
 /* background-image: url("https://images.unsplash.com/photo-1534088568595-a066f410bcda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGNsb3VkfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"); */
-background-image: url("https://images.unsplash.com/photo-1515890922410-ae767899d6b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNsb3VkfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60");
+background-image: linear-gradient(
+      rgba(10, 25, 48, 0.5),  /* dark blue with 70% opacity */
+      rgba(10, 25, 48, 0.5)   /* same color for uniform overlay */
+    ),url("https://images.unsplash.com/photo-1515890922410-ae767899d6b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNsb3VkfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60");
 background-repeat: no-repeat;
 background-size: cover;
-
+padding: 1rem;
 }
 
 .container-top{
@@ -50,6 +53,12 @@ background-size: cover;
 .cityName h1{
     font-size: 3.4rem;
 }
+
+input::placeholder {
+    color: white;
+    opacity: 0.8;
+  }
+
 .cityName{
     margin-left: 2%;
     padding-top: 15px;
@@ -59,8 +68,7 @@ background-size: cover;
     width: 100%;
     display: flex;
     flex-direction: column;
-    background: radial-gradient(rgba(21, 20, 20,0.45), rgba(23, 23, 23, 0.1),rgba(0, 0, 0, 0.1));
-
+    
 }
 
 .bottom-sub-1{
@@ -83,7 +91,6 @@ background-size: cover;
     width: 5%;
     width: auto;
     background: radial-gradient(rgba(251, 251, 251, 0.16), rgba(255, 255, 255, 0.01),rgba(255, 255, 255, 0.001));
-
 }
 .weather-icon img{
     width: 100%;
@@ -198,7 +205,7 @@ background-size: cover;
 /* footer */
 
 .footer-basic {
-  padding:40px 0;
+  padding:10px 0;
   background-position: bottom;
   color:#ffffff;
   background-color: rgb(54, 52, 52);
@@ -230,7 +237,8 @@ background-size: cover;
 
 .footer-basic .social {
   text-align:center;
-  padding-bottom:25px;
+  padding-bottom:15px;
+  padding-top: 5px;
 }
 
 .footer-basic .social > a {
@@ -252,11 +260,9 @@ background-size: cover;
 }
 
 .footer-basic .copyright {
-  margin-top:15px;
   text-align:center;
   font-size:13px;
   color:rgb(255, 255, 255);
-  margin-bottom:0;
 }
 
 @media screen and (max-width: 830px){
@@ -267,7 +273,7 @@ background-size: cover;
     .container{
         height: 100%;
         width: 100%;
-        
+        padding: 0rem;
     }
     .container-top{
         display: flex;
